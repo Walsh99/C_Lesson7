@@ -86,7 +86,20 @@ int main()
 
         case 'C':
         case 'c':
-            return 0;
+            counter = 0;
+            int lowestvalue = 0;
+            while (fgets(line, buffer_size, input))
+            {
+                // split up the line and store it in the right place
+                tokeniseRecord(line, ",", daily_readings[counter].date, &daily_readings[counter].bloodIron);
+                if(daily_readings[counter].bloodIron > lowestvalue)
+                {
+                    lowestvalue = daily_readings[counter].bloodIron;
+                }
+                counter++;
+            }
+            printf("Your lowest blood iron was %d\n", lowestvalue);
+            fclose(input);
             break;
 
         case 'D':
